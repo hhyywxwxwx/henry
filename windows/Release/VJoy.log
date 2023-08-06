@@ -1,0 +1,13 @@
+﻿  StdAfx.cpp
+  main.cpp
+D:\dji_vjoy\windows\Utils.h(12,39): warning C5040: 动态异常规范仅在 C++14 及更早版本中有效；视为 noexcept(false)
+D:\dji_vjoy\windows\main.cpp(89,70): warning C4244: “=”: 从“double”转换到“SHORT”，可能丢失数据
+D:\dji_vjoy\windows\main.cpp(90,69): warning C4244: “=”: 从“double”转换到“SHORT”，可能丢失数据
+D:\dji_vjoy\windows\main.cpp(91,71): warning C4244: “=”: 从“double”转换到“SHORT”，可能丢失数据
+D:\dji_vjoy\windows\main.cpp(92,73): warning C4244: “=”: 从“double”转换到“SHORT”，可能丢失数据
+  Utils.cpp
+D:\dji_vjoy\windows\Utils.h(12,39): warning C5040: 动态异常规范仅在 C++14 及更早版本中有效；视为 noexcept(false)
+D:\dji_vjoy\windows\Utils.cpp(22,39): warning C5040: 动态异常规范仅在 C++14 及更早版本中有效；视为 noexcept(false)
+  VJoy.cpp
+  正在生成代码...
+  VJoy.vcxproj -> D:\dji_vjoy\windows\Release\VJoy.exe

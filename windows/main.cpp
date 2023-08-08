@@ -75,7 +75,7 @@ void producer() {
 	cout << "producer exit\n";
 }
 void consumer() {
-	constexpr int REBOOT_NUM = 4096;
+	constexpr int REBOOT_NUM = 512;
 	int rebootCounter = 0;
 	VJoy_Initialize((PCHAR)"", (PCHAR)"");
 	while (isRunning) {
@@ -96,9 +96,6 @@ void consumer() {
 				--bufferSize;
 			}
 			bufferLock.unlock();
-			if (valid == false) {
-				continue;
-			}
 
 			if (rebootCounter >= REBOOT_NUM) {
 				VJoy_Shutdown();
@@ -106,6 +103,10 @@ void consumer() {
 				rebootCounter = 0;
 			}
 			++rebootCounter;
+
+			if (valid == false) {
+				continue;
+			}
 
 			VJoy_UpdateJoyState(0, &m_joyState[0]);
 
@@ -154,6 +155,7 @@ int main(int argc, char* argv[])
 
 	cout << "C1(Fn)键用于切换飞行模式(姿态模式、运动模式等)\n";
 	cout << "返航键用于返航\n";
+	cout << "输入 \"exit\" 以结束\n";
 
 	//初始化缓冲区
 	bufferFront = 0;

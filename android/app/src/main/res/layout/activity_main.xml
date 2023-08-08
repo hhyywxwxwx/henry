@@ -52,7 +52,6 @@
             android:layout_weight="5"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:text="192.168.0.114"
             android:hint="IP"/>
         <Button
             android:id="@+id/btn_start"

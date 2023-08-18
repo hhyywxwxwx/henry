@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_rc_connection = null;
     private EditText et_serverIP = null;
     private Button btn_start = null;
+    private Button btn_test_net = null;
     private ProgressBar pro_right_right, pro_right_left, pro_right_up, pro_right_down;
     private ProgressBar pro_left_right, pro_left_left, pro_left_up, pro_left_down;
 
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         tv_rc_connection = findViewById(R.id.tv_rc_connection);
         et_serverIP = findViewById(R.id.et_serverIP);
         btn_start = findViewById(R.id.btn_start);
+        btn_test_net = findViewById(R.id.btn_test_net);
         pro_right_right = findViewById(R.id.pro_right_right);
         pro_right_left = findViewById(R.id.pro_right_left);
         pro_right_up = findViewById(R.id.pro_right_up);
@@ -174,6 +176,39 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
+            }
+        });
+
+        btn_test_net.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(socket == null){
+                            String serverIPStr = String.valueOf(et_serverIP.getText());//获取pc端ip
+                            if(Utils.isValidIP(serverIPStr)){
+                                try {
+                                    socket = new DatagramSocket(8456);
+                                    serverAddress = InetAddress.getByName(serverIPStr);
+                                } catch (SocketException | UnknownHostException e) {
+                                    e.printStackTrace();
+                                }
+                            }else{
+                                return;
+                            }
+                        }else{
+                            byte[] sendData = {0x01};
+                            DatagramPacket packet = new DatagramPacket(sendData, 0, sendData.length, serverAddress, 8456);
+                            try {
+                                socket.send(packet);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            showToast("已发送测试信号，请留意PC");
+                        }
+                    }
+                }).start();
             }
         });
     }

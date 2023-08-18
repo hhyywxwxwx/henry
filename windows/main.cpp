@@ -49,23 +49,27 @@ void producer() {
 		int n = select(0, &readFds, NULL, NULL, &timeout);
 		if (n > 0) {
 			int recvLen = recvfrom(sock, buf, 200, 0, (SOCKADDR*)&addressClient, &len);
-			while (isRunning) {
-				if (bufferLock.try_lock_for(chrono::milliseconds(500))) {
-					if (bufferSize >= BUFFER_CAPACITY) {
-						bufferLock.unlock();
-					}
-					else {
-						buffer[bufferBack].leftHorizontal = (buf[0] << 8) | (buf[1]&0xff);
-						buffer[bufferBack].leftVertical = (buf[2] << 8) | (buf[3] & 0xff);
-						buffer[bufferBack].rightHorizontal = (buf[4] << 8) | (buf[5] & 0xff);
-						buffer[bufferBack].rightVertical = (buf[6] << 8) | (buf[7] & 0xff);
-						buffer[bufferBack].leftDial = (buf[8] << 8) | (buf[9] & 0xff);
-						buffer[bufferBack].C1isClicked = (buf[10] == 0) ? false : true;
-						buffer[bufferBack].goHomeisClicked = (buf[11] == 0) ? false : true;
-						bufferBack = (bufferBack + 1) % BUFFER_CAPACITY;
-						++bufferSize;
-						bufferLock.unlock();
-						break;
+			if (recvLen == 1) {//test inform
+				cout << "ÍøÂçÕý³£\n";
+			} else {
+				while (isRunning) {
+					if (bufferLock.try_lock_for(chrono::milliseconds(500))) {
+						if (bufferSize >= BUFFER_CAPACITY) {
+							bufferLock.unlock();
+						}
+						else {
+							buffer[bufferBack].leftHorizontal = (buf[0] << 8) | (buf[1] & 0xff);
+							buffer[bufferBack].leftVertical = (buf[2] << 8) | (buf[3] & 0xff);
+							buffer[bufferBack].rightHorizontal = (buf[4] << 8) | (buf[5] & 0xff);
+							buffer[bufferBack].rightVertical = (buf[6] << 8) | (buf[7] & 0xff);
+							buffer[bufferBack].leftDial = (buf[8] << 8) | (buf[9] & 0xff);
+							buffer[bufferBack].C1isClicked = (buf[10] == 0) ? false : true;
+							buffer[bufferBack].goHomeisClicked = (buf[11] == 0) ? false : true;
+							bufferBack = (bufferBack + 1) % BUFFER_CAPACITY;
+							++bufferSize;
+							bufferLock.unlock();
+							break;
+						}
 					}
 				}
 			}

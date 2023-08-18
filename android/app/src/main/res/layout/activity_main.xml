@@ -61,9 +61,17 @@
             android:textSize="15dp"
             android:layout_marginHorizontal="10dp"
             android:text="开始模拟"/>
+        <Button
+            android:id="@+id/btn_test_net"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="测试"
+            android:textSize="15dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

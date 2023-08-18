@@ -7,6 +7,14 @@
 PC端从移动端获取遥控器数据，通过VJoy SDK模拟虚拟手柄，将摇杆数据映射至VJoy Virtual Joystick[0]，再通过x360ce模拟成xbox360手柄输入大疆飞行模拟(DFS)；其余数据根据功能映射至键盘事件，触发DFS事件，即云台旋转、自动返航和切换飞行模式。
 
 ## 二、使用方法
+**概述：**
+1. 安装大疆飞行模拟(https://www.dji.com/cn/downloads/products/simulator)
+2. 安装VJoy驱动(本项目/driver/VJoySetup_DriverOnly.exe)
+3. 设置x360ce(/x360ce/x360ce_x64.exe)
+4. 编译(可选)
+5. 移动端安装dji_vjoy.apk(/apk_and_exe/android)，PC端运行VJoy.exe(/apk_and_exe/windows)
+
+**详细内容：**
 ### Ⅰ 安装大疆飞行模拟
 注意记录游戏`安装位置`：
 ![](./imgs/安装界面.png)
@@ -61,3 +69,6 @@ x360ce需要保存在与`DjiArena-...-Shipping.exe`相同的目录下，可以�
 ![](./imgs/android.jpg)
 
 最后启动大疆飞行模拟。
+
+## 四、测试网络通断
+新增测试功能，填写IP后点击“测试”按钮，若网络正常，PC端将显示“网络正常”。

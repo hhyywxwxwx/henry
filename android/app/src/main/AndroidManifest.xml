@@ -43,7 +43,7 @@
             android:required="false" />
         <meta-data
             android:name="com.dji.sdk.API_KEY"
-            android:value="please put your key here" /> <!-- DJI SDK -->
+            android:value="3d21016e545bb46f4a2cd308" /> <!-- DJI SDK -->
 
         <activity
             android:name=".MainActivity"

@@ -1,5 +1,1 @@
-- name: Upload APK
-  uses: actions/upload-artifact@f64b9398b3345cf9ec6a7c0e93bbd5c6e6b75d44
-  with:
-    name: app-debug.apk
-    path: henry/android/app/build/outputs/apk/debug/app-debug.apk
+
